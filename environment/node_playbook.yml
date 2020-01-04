@@ -1,0 +1,24 @@
+---
+- hosts:
+    - 127.0.0.1
+  remote_user: vagrant
+  become: yes
+  become_user: root
+  tasks:
+    - name: install nginx
+      shell: apt-get install nginx -y
+    - name: install git
+      shell: apt-get install git -y
+    - name: install python
+      shell: apt-get install python-software-properties -y
+    - name: install nodejs
+      shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && sudo apt-get install nodejs -y
+    - name: install pm2
+      shell: npm install pm2 -g
+- hosts:
+    - 127.0.0.1
+  remote_user: vagrant
+  become: yes
+  tasks:
+    - name: change directory
+      shell: cd ~ && cd /vagrant/app/
